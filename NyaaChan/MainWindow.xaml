@@ -1,0 +1,72 @@
+﻿<Window x:Class="NyaaChan.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="180" Width="525"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Window.Resources>
+        <Style TargetType="Window">
+            <Setter Property="Foreground" Value="#000"></Setter>
+        </Style>
+    </Window.Resources>
+    <Border Name="mask" CornerRadius ="7"  Margin="5">
+        <StackPanel Orientation="Vertical">
+            <Grid Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Name="titleBar" Height="24" Background="#222">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="17*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Name="txtTitle" Grid.Column="0" Padding="8" VerticalAlignment="Center" Foreground="White" FontSize="11" />
+                    <Button Name="btnClose" Grid.Column="1" Style="{StaticResource closeButton}"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0, 2.5, 0, 0">
+                        <TextBox Name="txtURL" Grid.Column="0" Grid.Row="0" Margin="5, 5, 5, 2.5"></TextBox>
+                        <TextBox Name="txtFolderName" Grid.Column="0" Grid.Row="0" Margin="5, 2.5, 5, 2.5"></TextBox>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+                        <Button Content="Download" Name="btnDownload" Grid.Column="1" Grid.Row="0" Margin="0, 10, 5, 5" Padding="5, 5, 5, 5" Click="btnDownload_Click" Style="{StaticResource grayButton}"></Button>
+                        <Button Content="Location" Name="btnLocation" Grid.Column="1" Grid.Row="0" Margin="0, 0, 5, 5" Padding="5, 5, 5, 5" Click="btnLocation_Click" Style="{StaticResource grayButton}"></Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                        <CheckBox Content="Create new board folder (default folder will be board name)" HorizontalAlignment="Left" VerticalAlignment="Top" Name="chkCreateBoardFolder" Grid.Row="1" Grid.Column="0" Margin="10, 0, 10, 0"></CheckBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                        <CheckBox Content="Create new thread folder (default folder will be thread time)" HorizontalAlignment="Left" VerticalAlignment="Top" Name="chkCreateThreadFolder" Grid.Row="1" Grid.Column="0" Margin="10, 0, 10, 0"></CheckBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+                        <CheckBox Content="Download thumbnails" HorizontalAlignment="Left" VerticalAlignment="Top" Name="chkThumbnail" Grid.Row="1" Grid.Column="0" Margin="10, 0, 10, 5"></CheckBox>
+                    </StackPanel>
+                    <TextBox Name="txtThreadName" Grid.Row="2" Grid.Column="1" Height="auto" Margin="0, 1, 5, 0.5"></TextBox>
+                    <TextBox Name="txtBoardName" Grid.Row="1" Grid.Column="2" Margin="0, 1, 5, 0"></TextBox>
+                    <TextBlock Name="txtMsg" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right"></TextBlock>
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Border>
+</Window>
