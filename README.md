@@ -7,6 +7,8 @@ other than to download images and their thumbnails
 This is made using the Newtonsoft Json.NET library<br/>
 download it at https://json.codeplex.com/
 
+You can download the installer here https://www.dropbox.com/s/b294eowomr07vyb/Setup.zip?dl=0
+
 # Usage
 Just copy the thread into the textbox and specify save location
 
