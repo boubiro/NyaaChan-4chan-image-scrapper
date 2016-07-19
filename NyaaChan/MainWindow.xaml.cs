@@ -8,10 +8,8 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 
-namespace NyaaChan
-{
-    public partial class MainWindow : Window
-    {
+namespace NyaaChan {
+    public partial class MainWindow : Window {
         public static Regex CHECK_URI_REGEX = new Regex(".*?(boards\\.4chan\\.org)(\\/)(\\w+)(\\/)(thread)(\\/)(\\d+)(\\/)?(\\s+)?",
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
@@ -20,8 +18,7 @@ namespace NyaaChan
         public static string DEFAULT_THUMB = "http://t.4cdn.org/";
         public static string DEFAULT_TITLE = "にゃあちゃん";
 
-        public MainWindow()
-        {
+        public MainWindow() {
             InitializeComponent();
 
             txtBoardName.IsEnabled = true;
@@ -44,10 +41,8 @@ namespace NyaaChan
             btnClose.Click += btnClose_Click;
         }
 
-        public void DownloadImage(string url, bool newBoardFolder, bool newThreadFolder, bool downloadThumbnails, string boardName, string threadName, string location)
-        {
-            if (CHECK_URI_REGEX.IsMatch(url))
-            {
+        public void DownloadImage(string url, bool newBoardFolder, bool newThreadFolder, bool downloadThumbnails, string boardName, string threadName, string location) {
+            if (CHECK_URI_REGEX.IsMatch(url)) {
                 if (url.Contains("#"))
                     url = url.Substring(0, url.Trim().LastIndexOf('#'));
                 else
@@ -59,8 +54,7 @@ namespace NyaaChan
                     url = url.Substring(0, url.LastIndexOf('/')) + ".json";
                 url = "http://" + url;
 
-                try
-                {
+                try {
                     string json = "";
                     string imageLink = "";
                     Regex r = new Regex(@"\.+");
@@ -92,31 +86,26 @@ namespace NyaaChan
                         thumbInfo = Directory.CreateDirectory(locationString + "Thumbnails");
                     string thumbnailLink = "";
                     foreach (Post p in rObj.posts)
-                        if (p.ext != null)
-                        {
+                        if (p.ext != null) {
                             thumbnailLink = r.Replace(DEFAULT_THUMB + tempArr[1] + "/" + p.tim + "s.jpg", ".");
                             imageLink = r.Replace(DEFAULT_IMAGE + tempArr[1] + "/" + p.tim + p.ext, ".");
-                            using (WebClient client = new WebClient())
-                            {
+                            using (WebClient client = new WebClient()) {
                                 client.DownloadFile(imageLink, locationString + p.tim + p.ext);
                                 if (downloadThumbnails)
                                     client.DownloadFile(thumbnailLink, locationString + "Thumbnails\\" + p.tim + ".jpg");
                             }
                         }
                 }
-                catch (Exception)
-                {
+                catch (Exception) {
                 }
             }
         }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
+        private void btnClose_Click(object sender, RoutedEventArgs e) {
             System.Windows.Application.Current.Shutdown();
         }
 
-        private void btnDownload_Click(object sender, RoutedEventArgs e)
-        {
+        private void btnDownload_Click(object sender, RoutedEventArgs e) {
             string url = txtURL.Text.Trim();
             bool newBoardFolder = (bool)chkCreateBoardFolder.IsChecked;
             bool newThreadFolder = (bool)chkCreateThreadFolder.IsChecked;
@@ -130,11 +119,9 @@ namespace NyaaChan
             t.Start();
         }
 
-        private void btnLocation_Click(object sender, RoutedEventArgs e)
-        {
+        private void btnLocation_Click(object sender, RoutedEventArgs e) {
             string result;
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
-            {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog()) {
                 DialogResult dResult = fbd.ShowDialog();
                 result = fbd.SelectedPath;
             }
@@ -142,28 +129,23 @@ namespace NyaaChan
             txtFolderName.Text = result;
         }
 
-        private void chkCreateBoardFolder_Checked(object sender, RoutedEventArgs e)
-        {
+        private void chkCreateBoardFolder_Checked(object sender, RoutedEventArgs e) {
             txtBoardName.IsEnabled = true;
         }
 
-        private void chkCreateBoardFolder_Unchecked(object sender, RoutedEventArgs e)
-        {
+        private void chkCreateBoardFolder_Unchecked(object sender, RoutedEventArgs e) {
             txtBoardName.IsEnabled = false;
         }
 
-        private void chkCreateThreadFolder_Checked(object sender, RoutedEventArgs e)
-        {
+        private void chkCreateThreadFolder_Checked(object sender, RoutedEventArgs e) {
             txtThreadName.IsEnabled = true;
         }
 
-        private void chkCreateThreadFolder_Unchecked(object sender, RoutedEventArgs e)
-        {
+        private void chkCreateThreadFolder_Unchecked(object sender, RoutedEventArgs e) {
             txtThreadName.IsEnabled = false;
         }
 
-        private void titleBar_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
+        private void titleBar_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {
             System.Windows.Application.Current.Shutdown();
         }
     }

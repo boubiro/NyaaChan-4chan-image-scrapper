@@ -18,3 +18,4 @@ c:\users\flatt\documents\visual studio 2013\Projects\NyaaChan\NyaaChan\bin\Debug
 c:\users\flatt\documents\visual studio 2013\Projects\NyaaChan\NyaaChan\bin\Debug\NyaaChan.application
 c:\users\flatt\documents\visual studio 2013\Projects\NyaaChan\NyaaChan\obj\Debug\NyaaChan.exe.manifest
 c:\users\flatt\documents\visual studio 2013\Projects\NyaaChan\NyaaChan\obj\Debug\NyaaChan.application
+C:\Users\Mono\Documents\git\NyaaChan\NyaaChan\bin\Debug\NyaaChan.exe.config
