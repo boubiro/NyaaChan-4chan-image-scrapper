@@ -359,3 +359,8 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+*/**/bin/Debug
+*/**/bin/Release
+*/**/obj/Debug
+*/**/obj/Release

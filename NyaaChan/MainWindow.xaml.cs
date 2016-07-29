@@ -7,6 +7,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Linq;
 
 namespace NyaaChan {
     public partial class MainWindow : Window {
@@ -80,13 +81,14 @@ namespace NyaaChan {
                             locationString = locationString + threadName + "\\";
 
                     DirectoryInfo dInfo = Directory.CreateDirectory(locationString);
-
+                    string[] fileNames = Directory.GetFiles(locationString).Select(path => Path.GetFileName(path)).ToArray();
+                    
                     DirectoryInfo thumbInfo;
                     if (downloadThumbnails)
                         thumbInfo = Directory.CreateDirectory(locationString + "Thumbnails");
                     string thumbnailLink = "";
                     foreach (Post p in rObj.posts)
-                        if (p.ext != null) {
+                        if (p.ext != null && !fileNames.Contains(p.tim + p.ext)) {
                             thumbnailLink = r.Replace(DEFAULT_THUMB + tempArr[1] + "/" + p.tim + "s.jpg", ".");
                             imageLink = r.Replace(DEFAULT_IMAGE + tempArr[1] + "/" + p.tim + p.ext, ".");
                             using (WebClient client = new WebClient()) {
